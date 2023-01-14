@@ -16,6 +16,17 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
+        $response->assertSeeTextInOrder(['Documentation', 'Vibrant']);
+
+        $response->assertStatus(200);
+    }
+
+    public function test_the_about_route_returns_a_successful_response()
+    {
+        $response = $this->get('/about');
+
+        $response->assertSee('About');
+
         $response->assertStatus(200);
     }
 }
