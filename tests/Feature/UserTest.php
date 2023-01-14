@@ -9,6 +9,8 @@ use App\Models\User;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
+    
     public function test_login_redirect_to_dashboard_successfully() {
         User::factory()->create([
             'email' => 'test@test.com',

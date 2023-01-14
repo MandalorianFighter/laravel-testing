@@ -21,6 +21,8 @@ Route::get('/about', function () {
     return "About Page!";
 });
 
+Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('products.index');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
