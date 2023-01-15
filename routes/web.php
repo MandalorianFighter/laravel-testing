@@ -26,6 +26,7 @@ Route::get('/products/create', 'App\Http\Controllers\ProductController@create')-
 Route::post('/products', 'App\Http\Controllers\ProductController@store')->middleware('admin')->name('products.store');
 Route::get('products/{product:id}/edit', 'App\Http\Controllers\ProductController@edit')->middleware('admin')->name('products.edit');
 Route::put('products/{product:id}', 'App\Http\Controllers\ProductController@update')->middleware('admin')->name('products.update');
+Route::delete('products/{product:id}', 'App\Http\Controllers\ProductController@destroy')->middleware('admin')->name('products.destroy');
 
 Route::middleware([
     'auth:sanctum',

@@ -59,4 +59,14 @@ class ProductCrudTest extends TestCase
         $this->assertEquals('Test', Product::first()->type);
         $this->assertEquals(4.99, Product::first()->price);
     }
+
+    public function test_admin_can_delete_product()
+    {
+        $admin = User::factory()->create(['is_admin' => 1]);
+        $product = Product::factory()->create();
+        $this->assertEquals(1, Product::count());
+        $response = $this->actingAs($admin)->delete('/products/' . $product->id);
+        $response->assertStatus(302);
+        $this->assertEquals(0, Product::count());
+    }
 }
