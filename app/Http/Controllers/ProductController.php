@@ -17,9 +17,30 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required'],
+            'type' => ['required'],
+            'price' => ['required']
+        ]);
+        Product::create($validated);
+        return to_route('products.index');
+    }
 
-        Product::create($request->all());
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'name' => ['required'],
+            'type' => ['required'],
+            'price' => ['required']
+        ]);
+        $product->update($validated);
         return to_route('products.index');
     }
 }
