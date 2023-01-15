@@ -22,6 +22,7 @@ Route::get('/about', function () {
 });
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('products.index');
+Route::get('/products/create', 'App\Http\Controllers\ProductController@index')->middleware('admin')->name('products.create');
 
 Route::middleware([
     'auth:sanctum',
@@ -32,3 +33,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
